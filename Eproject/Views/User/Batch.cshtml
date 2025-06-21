@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Eproject.Models.Batches>
+
+@{
+    ViewData["Title"] = "Batch";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Batch List</h2>
+        <a asp-action="batch_create" class="btn btn-primary">Create New Batch</a>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Batch Name</th>
+                <th>Course</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Timing</th>
+                <th>Faculty</th>
+                <th>Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model ?? new List<Eproject.Models.Batches>())
+            {
+                <tr>
+                    <td>@item.BatchName</td>
+                    <td>@item.CourseName</td>
+                    <td>@item.StartDate.ToShortDateString()</td>
+                    <td>@item.EndDate.ToShortDateString()</td>
+                    <td>@item.Timing</td>
+                    <td>@item.FacultyName</td>
+                    <td>@item.Capacity</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BatchId" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.BatchId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

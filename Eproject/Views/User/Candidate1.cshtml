@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Eproject.Models.Candidates>
+
+@{
+    ViewData["Title"] = "Candidates";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<h2>Candidates</h2>
+
+<p>
+    
+    <a asp-action="candidate_create" class="btn btn-primary">Add New Candidate</a>
+
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Candidate ID</th>
+            <th>Full Name</th>
+            <th>Payment Mode</th>
+            <th>Batch Timing</th>
+            <th>Fine Amount</th>
+            <th>Is On Break</th>           
+            <th>Registration Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model ?? new List<Candidates>())
+        {
+            <tr>
+                <td>@item.CandidateId</td> <!-- Updated from @item.CandidateId to @item.CandidateId -->
+                <td>@item.Name</td>
+                <td>@item.PaymentMode</td>
+                <td>@item.BatchTiming</td>
+                <td>@item.FineAmount</td>
+                <td>@item.IsOnBreak</td>
+                <td>@item.RegistrationDate</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CandidateId">Edit</a> |
+              
+                    <a asp-action="Delete" asp-route-id="@item.CandidateId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

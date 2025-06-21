@@ -1,0 +1,77 @@
+﻿@model Eproject.Models.Enquiry
+
+@{
+    ViewData["Title"] = "Create New Enquiry";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">New Enquiry</h4>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <!-- ✅ One single form -->
+            <form asp-action="Enquiry" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter your full name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" type="email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CourseInterested" class="form-label">Course Interested In</label>
+                            <select asp-for="CourseInterested" class="form-control">
+                                <option value="">Select a course</option>
+                                @foreach (var course in ViewBag.Courses)
+                                {
+                                    <option value="@course">@course</option>
+                                }
+                            </select>
+                            <span asp-validation-for="CourseInterested" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Message" class="form-label"></label>
+                    <textarea asp-for="Message" class="form-control" rows="4" placeholder="Enter your enquiry details"></textarea>
+                    <span asp-validation-for="Message" class="text-danger"></span>
+                </div>
+
+                <!-- ✅ Submit and back button inside same form -->
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-paper-plane"></i> Submit Enquiry
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary px-4 ms-2">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

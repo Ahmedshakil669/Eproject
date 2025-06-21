@@ -1,0 +1,75 @@
+﻿@model Eproject.Models.Courses
+
+@{
+    ViewData["Title"] = "Create New Course";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Add New Course</h4>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <form asp-action="create_course" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="CourseCode" class="form-label">Course Code</label>
+                            <input asp-for="CourseCode" class="form-control" placeholder="e.g., CS-101" />
+                            <span asp-validation-for="CourseCode" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CourseName" class="form-label">Course Name</label>
+                            <input asp-for="CourseName" class="form-control" placeholder="e.g., Introduction to Programming" />
+                            <span asp-validation-for="CourseName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label asp-for="CourseFee" class="form-label">Course Fee (₹)</label>
+                            <input asp-for="CourseFee" class="form-control" placeholder="e.g., 15000" />
+                            <span asp-validation-for="CourseFee" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CourseLenth" class="form-label">Duration (months)</label>
+                            <input asp-for="CourseLenth" class="form-control" placeholder="e.g., 6" />
+                            <span asp-validation-for="CourseLenth" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Course description..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-primary px-4"><i class="fas fa-save"></i> Create Course </button>
+                    <a asp-action="Courses" class="btn btn-secondary px-4 ms-2">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

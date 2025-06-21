@@ -1,0 +1,66 @@
+﻿@model Eproject.Models.Candidates
+
+@{
+    ViewData["Title"] = "Create_Candidate@model Eproject.Models.Candidate";
+
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<h2>Create Candidate</h2>
+
+<form asp-action="candidates_create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PaymentMode"></label>
+        <select asp-for="PaymentMode" class="form-control" >
+            <option value="Cash">Cash</option>
+            <option value="Online">Online</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FineAmount"></label>
+        <input asp-for="FineAmount" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="IsOnBreak"></label>
+        <input asp-for="IsOnBreak" class="form-control"/>
+       
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BatchTiming"></label>
+        <input asp-for="BatchTiming" type="time" class="form-control" />
+        <span asp-validation-for="BatchTiming" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegistrationDate"></label>
+        <input asp-for="RegistrationDate" class="form-control" type="date" />
+    </div>
+    <form asp-action="facalty_create" method="post">
+        <!-- your inputs here... -->
+
+        <button type="submit" class="btn btn-success">Add Candidate</button>
+        <a asp-action="Facalty" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+
+</form>
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

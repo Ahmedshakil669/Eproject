@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Welcome to Zeal Institute";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<div class="container mt-5 text-center">
+    <div class="p-5 bg-light rounded-4 shadow-lg">
+        <h1 class="display-4 text-primary fw-bold">Welcome to Zeal Institute</h1>
+        <p class="lead mt-3 text-secondary">
+            Empowering your future through quality education and professional training.
+        </p>
+        <hr class="my-4">
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <i class="fas fa-user-graduate fa-3x text-success mb-3"></i>
+                <h4>Student Management</h4>
+                <p>Register, track, and manage student data effortlessly.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-chalkboard-teacher fa-3x text-info mb-3"></i>
+                <h4>Qualified Faculty</h4>
+                <p>Our experienced faculty are committed to your success.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-book-open fa-3x text-warning mb-3"></i>
+                <h4>Courses & Exams</h4>
+                <p>Stay organized with structured courses and exam management.</p>
+            </div>
+        </div>
+
+        <a class="btn btn-primary btn-lg mt-4" asp-controller="User" asp-action="Candidate1">
+            Get Started
+        </a>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Eproject.Models.Facalty>
+
+@{
+    ViewData["Title"] = "Faculty";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Faculty List</h2>
+        <a asp-action="Facalty_create" asp-controller="User" class="btn btn-success">Add Faculty</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Faculty ID</th>
+                <th>Faculty Code</th>
+                <th>Batch Code</th>
+                <th>Batch Timing</th>
+                <th>Qualification</th>
+                <th style="width: 120px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model ?? new List<Eproject.Models.Facalty>())
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.FacultyId</td>
+                    <td>@item.FacultyCode</td>
+                    <td>@item.BatchCode</td>
+                    <td>@item.BatchTiming.ToString("hh\\:mm")</td>
+                    <td>@item.Qualification</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.FacultyId" class="btn btn-sm btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.FacultyId" class="btn btn-sm btn-danger ms-1">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

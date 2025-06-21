@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<h2 class="text-primary mb-4">Reports Dashboard</h2>
+
+<ul class="list-group">
+    <!-- STUDENT REPORTS -->
+    <li class="list-group-item">
+        <a asp-action="StudentDetailByMonthYear">Student Detail by Month/Year</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="StudentOnBreak">Students Currently On Break</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="StudentByTiming" asp-route-timing="10:00:00">Students by Batch Timing (10:00 AM)</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="FineDetails">Fine Details</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="PaymentModes">Payment Modes Report</a>
+    </li>
+
+    <!-- EXAM REPORT -->
+    <li class="list-group-item">
+        <a asp-action="ExamReport">Examination Report</a>
+    </li>
+
+    <!-- BATCH REPORTS -->
+    <li class="list-group-item">
+        <a asp-action="EndingBatches">Ending Batches</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="StartingBatches">Starting Batches</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="StudentsInBatch" asp-route-timing="10:00:00">Students in Batch (10:00 AM)</a>
+    </li>
+    <li class="list-group-item">
+        <a asp-action="TestReportsByTiming" asp-route-timing="10:00:00">Batch-wise Test Reports (10:00 AM)</a>
+    </li>
+</ul>

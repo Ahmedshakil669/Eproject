@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Eproject.Models.Enquiry>
+
+
+
+@{
+    ViewData["Title"] = "Enquiry";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<h2>Enquiries</h2>
+
+<p>
+    <a asp-action="Enquiry_create" class="btn btn-primary">Add New Enquiry</a>
+
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Enquiry ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course Interested</th>
+            <th>Enquiry Date</th>
+            <th>Message</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model ?? new List<Eproject.Models.Enquiry>())
+        {
+            <tr>
+                <td>@item.EnquiryId</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.CourseInterested</td>
+                <td>@item.EnquiryDate.ToShortDateString()</td>
+                <td>@item.Message</td>
+                <td>
+                    <a asp-action="EditEnquiry" asp-route-id="@item.EnquiryId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="DetailsEnquiry" asp-route-id="@item.EnquiryId" class="btn btn-sm btn-info">Details</a> <!-- If you have a DetailsEnquiry action -->
+
+                    <form asp-action="DeleteEnquiry" method="post" style="display:inline;"
+                          onsubmit="return confirm('Are you sure you want to delete this enquiry?');">
+                        <input type="hidden" name="id" value="@item.EnquiryId" />
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

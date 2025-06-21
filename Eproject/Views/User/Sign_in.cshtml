@@ -1,0 +1,107 @@
+﻿@model Eproject.Models.Sign_up
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = "~/Views/Shared/headfoot.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="col-md-5 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <!-- Logo and Header -->
+                    <div class="text-center mb-4">
+                        <h3 class="text-primary">
+                            <i class="fa fa-graduation-cap me-2"></i>Zeal Institute
+                        </h3>
+                        <h4 class="mt-3">Sign In</h4>
+                    </div>
+
+                    <!-- Display Success Message -->
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show">
+                            @TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <!-- Display Error Message -->
+                    @if (ViewData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show">
+                            @ViewData["ErrorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    }
+
+                    <!-- Sign In Form -->
+                    <form asp-action="Sign_in" method="post">
+                        <!-- Email Field -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" id="passwordInput" />
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Remember Me Checkbox -->
+                        <div class="mb-3 form-check">
+                            <input asp-for="CheckMeOut" class="form-check-input" />
+                            <label asp-for="CheckMeOut" class="form-check-label">Remember me</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
+
+                        <!-- Forgot Password Link -->
+                        <div class="text-center mb-3">
+                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                        </div>
+
+                        <!-- Sign Up Link -->
+                        <div class="text-center">
+                            Don't have an account?
+                            <a href="@Url.Action("Sign_out", "User")" class="text-decoration-none">Create Account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <!-- Password Toggle Script -->
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = this.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+}
